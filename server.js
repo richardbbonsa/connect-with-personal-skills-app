@@ -1,8 +1,9 @@
-const express = require('express')
-const Routes = require('./routes')
+const express = require('express');
+const Routes = require('./routes');
+const server = express();
+const port=3000;
 
-const app = express();
+server.use(express.json());
+server.use('/api/v0', Routes);
 
-app.use(express.json());
-
-app.listen(3000,()=>console.log("Server escuchando en el puerto 3000"))
+server.listen(port,()=>console.log(`El servidor se encuentra escuchando en el puerto ${port}`));
