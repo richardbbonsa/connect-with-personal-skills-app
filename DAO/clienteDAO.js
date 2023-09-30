@@ -3,7 +3,7 @@ const db=require('../db/db');
 class ClienteDAO {
     async create(cliente) {
         const { name, email, address, phoneNumber, nui } = cliente;
-        const result = await db.insert({
+        const result = await db('Clientes').insert({
             name,
             email,
             address,
@@ -14,23 +14,23 @@ class ClienteDAO {
     }
 
     async read(nui) {
-        const cliente = await db('clientes').where({ NUI: nui }).first();
+        const cliente = await db('Clientes').where({ NUI: nui }).first();
         return cliente;
     }
 
     async readAll() {
-        const clientes = await db.select('*').from('clientes');
+        const clientes = await db.select('*').from('Clientes');
         return clientes;
     }
 
     async update(cliente) {
         const { ... nui } = cliente;
-        const result = await db('clientes').where({ NUI: nui }).update(cliente).returning('NUI');
+        const result = await db('Clientes').where({ NUI: nui }).update(cliente).returning('NUI');
         return result;
     }
 
-    async delete(id) {
-        const result = await db('clientes').where({ idCliente: id }).del();
+    async delete(nui) {
+        const result = await db('Clientes').where({ NUI: nui }).del();
         return result;
     }
 }

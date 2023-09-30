@@ -1,10 +1,10 @@
-const {ClienteService} = require('../services');
+const {ProyectoService} = require('../services');
 
-class ClienteController{
+class ProyectoController{
     async create(req,res){
         try {
-            const cliente = req.body;
-            const result = await ClienteService.create(cliente);
+            const proyecto = req.body;
+            const result = await ProyectoService.create(proyecto);
             res.status(201).json(result);
         } catch (err) {
             console.log(err)
@@ -14,9 +14,9 @@ class ClienteController{
 
     async read(req,res){
         try {
-            const nui = req.params.nui;
-            const cliente = await ClienteService.read(nui);
-            res.status(206).json(cliente);
+            const idProyecto = req.params.id;
+            const proyecto = await ProyectoService.read(idProyecto);
+            res.status(206).json(proyecto);
         } catch (err) {
             console.log(err)
             res.status(400).json({ error: "Something went wrong" });
@@ -25,8 +25,8 @@ class ClienteController{
 
     async readAll(req,res){
         try {
-            const clientes = await ClienteService.readAll();
-            res.status(200).json(clientes);
+            const proyectos = await ProyectoService.readAll();
+            res.status(200).json(proyectos);
         } catch (err) {
             console.log(err)
             res.status(400).json({ error: "Something went wrong" });
@@ -35,10 +35,10 @@ class ClienteController{
 
     async update(req,res){
         try {
-            const nui = req.params.nui;
-            const cliente = req.body;
-            cliente.nui = nui;
-            const result = await ClienteService.update(cliente);
+            const idProyecto = req.params.id;
+            const proyecto = req.body;
+            proyecto.idProyecto = idProyecto;
+            const result = await ProyectoService.update(proyecto);
             res.status(200).json(result);
         } catch (err) {
             console.log(err)
@@ -48,8 +48,8 @@ class ClienteController{
 
     async delete(req,res){
         try {
-            const nui = req.params.nui;
-            const result = await ClienteService.delete(nui);
+            const idProyecto = req.params.id;
+            const result = await ProyectoService.delete(idProyecto);
             res.json(result);
         } catch (err) {
             console.log(err)
@@ -58,4 +58,4 @@ class ClienteController{
     }
 }
 
-module.exports=new ClienteController();
+module.exports=new ProyectoController();

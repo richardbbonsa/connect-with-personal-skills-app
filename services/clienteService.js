@@ -2,8 +2,14 @@ const {ClienteDAO}=require('../DAO')
 
 class ClienteService{
     create(cliente) {
-        const result = ClienteDAO.create(cliente);
-        return result;
+        const { name, email, address, phoneNumber, nui } = cliente;
+        if (name==null||email==null||address==null||phoneNumber==null||nui==null) {
+            return "Falta algún campo necesario para crear el cliente por llenar";
+        } else {
+            const result = ClienteDAO.create(cliente);
+            return result;
+        }
+        
     }
 
     read(nui) {
