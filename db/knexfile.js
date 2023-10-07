@@ -3,14 +3,17 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+
+require('dotenv').config()
+
 module.exports = {
 
   development: {
     client: 'postgresql',
     connection: {
-      database: 'facturacion',
-      user:     'postgres',
-      password: 'root'
+      database: process.env.DB_NAME,
+      user:     process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     pool: {
       min: 2,
@@ -24,9 +27,9 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'facturacion',
-      user:     'postgres',
-      password: 'root'
+      database: process.env.DB_NAME,
+      user:     process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     pool: {
       min: 2,
@@ -40,9 +43,9 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'facturacion',
-      user:     'postgres',
-      password: 'root'
+      database: process.env.DB_NAME,
+      user:     process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD
     },
     pool: {
       min: 2,

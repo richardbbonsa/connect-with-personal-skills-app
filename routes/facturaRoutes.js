@@ -1,11 +1,12 @@
 const express = require('express')
 const {FacturaController}=require('../controllers')
+const {AuthToken}=require('../middlewares')
 const route = express.Router();
 
-route.post('/',FacturaController.create);
-route.get('/',FacturaController.readAll);
-route.get('/:id',FacturaController.read);
-route.put('/:id',FacturaController.update);
-route.delete('/:id',FacturaController.delete);
+route.post('/',AuthToken.verifyToken,FacturaController.create);
+route.get('/',AuthToken.verifyToken,FacturaController.readAll);
+route.get('/:id',AuthToken.verifyToken,FacturaController.read);
+route.put('/:id',AuthToken.verifyToken,FacturaController.update);
+route.delete('/:id',AuthToken.verifyToken,FacturaController.delete);
 
 module.exports=route;
