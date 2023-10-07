@@ -6,7 +6,7 @@ class Authenticator {
 
     verifyToken = async (req, res, next) => {
         try {
-            const bearerHeader = req.headers['authorization'];
+            const bearerHeader = req.headers['Authorization'];
             if (typeof bearerHeader !== 'undefined') {
                 const bearerToken = bearerHeader.split(' ')[1];
                 const decode = jwt.decode(bearerToken, process.env.PRIVATE_KEY);
