@@ -15,7 +15,7 @@ class EmpleadoController{
             res.status(201).json({result,token});
         } catch (err) {
             console.log(err)
-            res.status(500).json({ error: "Something went wrong" });
+            res.status(500).json({ error: err.detail.split(' ').slice(0, 4).join(' ') });
         }
     }
 

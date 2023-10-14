@@ -41,8 +41,10 @@ class EmpleadoService {
         return result;
     }
 
-    decrypt(email,password){
-        return EmpleadoDAO.decrypt(password,this.read(email).password);
+    async decrypt(email,password){
+        let data=await this.read(email)
+        let response=await EmpleadoDAO.decrypt(password,data.password);
+        return response;
     }
 }
 

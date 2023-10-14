@@ -6,7 +6,7 @@ class EmpleadoDAO {
         const { user, password, email } = empleado;
         const result = await db('Login').insert({
             user,
-            password: encrypt(password),
+            password: await encrypt(password),
             email
         }).returning('email');
         return result;
@@ -34,7 +34,8 @@ class EmpleadoDAO {
     }
 
     decrypt = async (password, recivedPassword) => {
-        return await bcrypt.compare(password, recivedPassword);
+        let compere=await bcrypt.compare(password, recivedPassword);
+        return compere
     }
 }
 

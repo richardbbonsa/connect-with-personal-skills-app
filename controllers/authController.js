@@ -6,16 +6,16 @@ class AuthController {
 
     async login(req, res) {
         try {
-            const {email,password} =req.body;
-            const empleado=EmpleadoService.read(email);
-            if (empleado.length === 0) {
-                throw "Empleado not found";
+            let {email,password} =req.body;
+            let empleado=await EmpleadoService.read(email);
+            if (empleado == undefined) {
+                throw "Email not found";
             } else {
-                const compPass=EmpleadoService.decrypt(email,password);
+                let compPass=await EmpleadoService.decrypt(email,password);
                 if (!compPass) {
                     throw "Incorrect password";
                 } else {
-                    const token=jwt.sign({
+                    let token=jwt.sign({
                         email:empleado.email
                     },process.env.PRIVATE_KEY,{
                         expiresIn:'1d'
@@ -25,8 +25,8 @@ class AuthController {
             }
         } catch (err) {
             console.log(err)
-            if (err=="Empleado not found") {
-                res.status(400).json({ error: "Empleado not found" });
+            if (err=="Email not found") {
+                res.status(400).json({ error: "Email not found" });
             } else {
                 res.status(400).json({ error: "Incorrect password" });
             }
