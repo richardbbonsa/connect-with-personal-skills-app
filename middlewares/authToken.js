@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { EmpleadoService } = require('../services');
-require('dotenv').config()
+require('dotenv').config({ path: "../.env" })
 
 class Authenticator {
 

@@ -1,6 +1,6 @@
 const {EmpleadoService} = require('../services');
 const jwt=require('jsonwebtoken')
-require('dotenv').config()
+require('dotenv').config({ path: "../.env" })
 
 class EmpleadoController{
     async create(req,res){
