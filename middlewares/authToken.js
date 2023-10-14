@@ -13,14 +13,18 @@ class Authenticator {
                 if (decode == null) {
                     res.status(403).json({ message: "Token error" });
                 } else {
-                    const empleado = EmpleadoService.read(decode.email);
-                    if (empleado.length === 0) {
-                        res.status(404).json({ message: "Empleado not found" });
+                    let nowDate=new Date();
+                    if (nowDate<=decode.exp) {
+                        res.status(403).json({ message: "Token expired" });
                     } else {
-                        next();
+                        const empleado = EmpleadoService.read(decode.result[0].email);
+                        if (empleado.length === 0) {
+                            res.status(404).json({ message: "Empleado not found" });
+                        } else {
+                            next();
+                        }
                     }
                 }
-
             } else {
                 res.status(403).json({ message: "No token provided" });
             }
