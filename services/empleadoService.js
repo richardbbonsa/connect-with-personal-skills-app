@@ -3,7 +3,7 @@ const { EmpleadoDAO } = require('../DAO')
 class EmpleadoService {
     create(empleado) {
         const { user, password, email } = empleado;
-        if (user == null || password == null || email == null) {
+        if (user == '' || password == '' || email == '') {
             return "Falta algún campo necesario para crear el cliente por llenar";
         } else {
             const result = EmpleadoDAO.create(empleado);
