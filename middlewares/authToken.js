@@ -13,11 +13,11 @@ class Authenticator {
                 if (decode == null) {
                     res.status(403).json({ message: "Token error" });
                 } else {
-                    let nowDate=new Date();
-                    if (nowDate<=decode.exp) {
+                    let nowDate = new Date();
+                    if (nowDate <= decode.exp) {
                         res.status(403).json({ message: "Token expired" });
                     } else {
-                        const empleado = EmpleadoService.read(decode.result[0].email);
+                        const empleado = EmpleadoService.read(decode.result.email);
                         if (empleado.length === 0) {
                             res.status(404).json({ message: "Empleado not found" });
                         } else {
