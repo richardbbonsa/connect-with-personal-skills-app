@@ -18,7 +18,7 @@ class Authenticator {
                         res.status(403).json({ message: "Token expired" });
                     } else {
                         console.log(decode)
-                        const empleado = EmpleadoService.read(decode.result.email);
+                        const empleado = EmpleadoService.read(decode.email);
                         if (empleado.length === 0) {
                             res.status(404).json({ message: "Empleado not found" });
                         } else {
