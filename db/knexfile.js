@@ -4,7 +4,7 @@
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 
-require('dotenv').config({path:'../.env'})
+require('dotenv').config({ path: '../.env' })
 
 module.exports = {
 
@@ -13,7 +13,7 @@ module.exports = {
     connection: {
       host: process.env.DB_HOST,
       database: process.env.DB_NAME,
-      user:     process.env.DB_USERNAME,
+      user: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       ssl: true,
     },
@@ -31,7 +31,7 @@ module.exports = {
     connection: {
       host: process.env.DB_HOST,
       database: process.env.DB_NAME,
-      user:     process.env.DB_USERNAME,
+      user: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       ssl: true,
     },
@@ -49,9 +49,8 @@ module.exports = {
     connection: {
       host: process.env.DB_HOST,
       database: process.env.DB_NAME,
-      user:     process.env.DB_USERNAME,
+      user: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
-      ssl: true,
     },
     pool: {
       min: 2,
